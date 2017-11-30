@@ -1,0 +1,29 @@
+{
+  "name": "Fullstack-movies",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./start.js",
+    "test": "node ./test.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.8",
+    "mongoose-currency": "^0.2.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "express-session": "^1.15.5",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.5.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}

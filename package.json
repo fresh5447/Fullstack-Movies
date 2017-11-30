@@ -1,0 +1,42 @@
+{
+  "name": "E-Commerce-React-root",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "npm run clean:root && npm run clean:client && npm run clean:server",
+    "clean:client": "rimraf ./client/node_modules && rimraf ./server/node_modules",
+    "clean:root": "rimraf ./node_modules",
+    "clean:server": "rimraf ./client/node_modules && rimraf ./server/node_modules",
+    "install:client": "cd ./client && echo 'Installing client packages...' && npm install",
+    "install:server": "cd ./server && echo 'Installing server packages...' && npm install",
+    "install:mongo": "mkdir -p ./mongo_data",
+    "install:upstream": "git remote add upstream https://github.com/AmericaCampaign/Projects-React-E-Commerce-1.git",
+    "latest": "npm run latest:root && npm run latest:client && npm run latest:server",
+    "latest:client": "cd ./client && echo 'Upgrading client packages to latest...' && npm --latest upgrade",
+    "latest:root": "echo 'Upgrading root packages to latest...' && npm --latest upgrade",
+    "latest:server": "cd ./server && echo 'Upgrading server packages to latest...' && npm --latest upgrade",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start:client": "cd ./client && npm start",
+    "start:db": "mongod --dbpath ./mongo_data",
+    "start:server": "cd ./server && npm start",
+    "postinstall": "npm run install:client && npm run install:server && npm run install:mongo",
+    "test:server": "cd ./server && npm test",
+    "update": "git checkout master && git pull upstream master"
+  },
+  "author": "Jay Cheroske",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "rimraf": "^2.6.1"
+  }
+}
