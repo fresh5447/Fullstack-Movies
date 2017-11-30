@@ -1,8 +1,45 @@
-import React from 'react'
+import React, {Component} from 'react'
+import $ from 'jquery'
 
-const App = () =>
-  <div>
-    <h1>Hello App</h1>
-  </div>
+class APP extends Component {
+  state = {
+    movies: undefined
+  }
 
-export default App
+  componentDidMount() {
+    this.loadMoviesFromServer()
+  }
+
+  loadMoviesFromServer = () => {
+    $.ajax({
+      url: '/api/movies',
+      method: 'GET'
+    }).done((response) => {
+      console.log(response)
+      this.setState({ movies: response.movies })
+    })
+  }
+
+  submitMovieToServer = () => {
+    const newMovie = {title: 'Superman', year: 1997 } // replace with state
+    $.ajax({
+      url: '/api/movies',
+      method: 'POST',
+      data: newMovie
+    }).done((response) => {
+      console.log(response)
+      this.loadMoviesFromServer() // Will refresh the state ie movies list
+    })
+  }
+
+
+  render () {
+    return (
+      <div>
+        <button onClick={this.submitMovieToServer}>Submit Movie</button>
+      </div>
+    )
+  }
+}
+
+export default APP

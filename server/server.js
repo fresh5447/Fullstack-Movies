@@ -15,21 +15,33 @@ app.use(require('./config/error-handler'))
 
 const ourFirstMovie = {title: 'Jaws', year: 1965}
 
-Movie(ourFirstMovie).save((err, movie) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('MOVIE ADDED TO DB', movie)
-  }
+app.get('/api/movies', (req, res) => {
+  Movie.find((err, movies) => {
+    if (err) {
+      res.json({error: err})
+    } else {
+      res.json({ msg: 'SUCCESS', data: movies })
+    }
+  })
 })
 
-Movie.find((err, movies) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('****** HERES YOUR MOVIES ******', movies)
+app.post('/api/movies', (req,res) => {
+  const newMovie = {
+    title: req.body.title,
+    year: req.body.year
   }
+  Movie(newMovie).save((err, movie) => {
+    if (err) {
+      res.json({error: err})      
+    } else {
+      res.json({ msg: 'SUCCESS', data: movie })
+    }
+  })
 })
+
+
+
+
 
 const server = app.listen(port, () => console.log(`Running on port: ${port}`))
 
