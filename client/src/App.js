@@ -1,7 +1,18 @@
 import React, {Component} from 'react'
 import MovieList from './MovieList'
 import MovieForm from './MovieForm'
+import Header from './Header'
 import $ from 'jquery'
+
+const styles = {
+  container: {
+    width: '100%',
+    border: '1px solid black',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+}
 
 class APP extends Component {
   state = {
@@ -32,7 +43,7 @@ class APP extends Component {
       data: newMovie
     }).done((response) => {
       console.log(response)
-      //this.loadMoviesFromServer() // Will refresh the state ie movies list
+      this.loadMoviesFromServer() // Will refresh the state ie movies list
     })
   }
 
@@ -42,7 +53,8 @@ class APP extends Component {
 
   render () {
     return (
-      <div>
+      <div style={styles.container}>
+        <Header />
         <MovieForm
           submitMovieToServer={this.submitMovieToServer}
           onTitleChange={this.onTitleChange}
